@@ -1,0 +1,2 @@
+Ctrl-Shift-A  Wrap with abbreviation
+ul>li*>a[href=http://$#.com]

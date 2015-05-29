@@ -1,103 +1,95 @@
-$(document).ready(function() {
+var pixGrid = function() { 
+  //Selecting our node
+  var myNode = document.querySelector('.pixgrid');
+  myNode.addEventListener("click", function(e) {
 
-	$("body", "left_aside").niceScroll({
-		horizrailenabled : false
-	});
-	
-$(".gallery").css("min-height", $(document).height()*2);
-	
-$(".btn_mnu").click(function() {
-  $(this).toggleClass("active");
-  $(".left_side").toggleClass("active");
-});
-	
-	var wall = new freewall(".gallery");
-wall.reset({
-	selector: "a",
-	animate: true,
-	cellW: 150,
-	cellH: "auto",
-	gutterX : 5,
-	gutterY : 5,
-	onResize: function() {
-		wall.fitWidth();
-	}
-});
+    if(e.target.tagName === 'IMG') { 
 
-var images = wall.container.find("a");
-images.find("img").load(function() {
-	wall.fitWidth();
-});
+      var myOverlay = document.createElement('div');
+      myOverlay.id = 'overlay';
+      document.body.appendChild(myOverlay);
 
- $(".filter_label").click(function() {
- 	$(".filter_label").removeClass("active");
- 	var filter = $(this).addClass("active").data("filter");
- 	wall.filter(filter);
- 	setTimeout(function() {
- 		$(window).resize();
- 		wall.fitWidth();
- 	}, 400);
- });
-	
-$(".gallery img").lazyload({
-	effect : "fadeIn",
-	treshold : 1000
-}).parent().hover(function() {
-	$(".gallery a").css("opacity", ".8");
-	$(this).css("opacity", "1");
-}, function() {
-	$(".gallery a").css("opacity", "1");
-});	
-	
-	
-	
-	
-	//Цели для Яндекс.Метрики и Google Analytics
-	$(".count_element").on("click", (function() {
-		ga("send", "event", "goal", "goal");
-		yaCounterXXXXXXXX.reachGoal("goal");
-		return true;
-	}));
+      //set up overlay styles
+      myOverlay.style.position = 'absolute';
+      myOverlay.style.top = 0;
+      myOverlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      myOverlay.style.cursor = 'pointer';
 
-	//SVG Fallback
-	if(!Modernizr.svg) {
-		$("img[src*='svg']").attr("src", function() {
-			return $(this).attr("src").replace(".svg", ".png");
-		});
-	};
+      //resize and position overlay
+      myOverlay.style.width = window.innerWidth + 'px';
+      myOverlay.style.height = window.innerHeight + 'px';
+      myOverlay.style.top = window.pageYOffset + 'px';
+      myOverlay.style.left = window.pageXOffset + 'px';
 
-	//Аякс отправка форм
-	//Документация: http://api.jquery.com/jquery.ajax/
-	$("#form").submit(function() {
-		$.ajax({
-			type: "POST",
-			url: "mail.php",
-			data: $(this).serialize()
-		}).done(function() {
-			alert("Спасибо за заявку!");
-			setTimeout(function() {
-				
-			}, 1000);
-		});
-		return false;
-	});
+      //Create image element
+      var imageSrc = e.target.src;
+      var largeImage = document.createElement('img');
+      largeImage.id = 'largeImage';
+      largeImage.src = imageSrc.substr(0, imageSrc.length-7) + '.jpg';
+      largeImage.style.display = 'block';
+      largeImage.style.position = 'absolute';
+      
+      //wait until the image has loaded
+      largeImage.addEventListener('load', function() {
 
-	
-	
-	$(".gallery a").magnificPopup({
-	type : 'image',
-	gallery : {
-		enabled : true
-	},
-	removalDelay: 300,
-	mainClass: 'mfp-fade'
-});
+        //Resize if taller
+        if (this.height > window.innerHeight) {
+          this.ratio = window.innerHeight / this.height;
+          this.height = this.height * this.ratio;
+          this.width = this.width * this.ratio;
+        }
 
-	
-});
+        //Resize if wider
+        if (this.width > window.innerWidth) {
+          this.ratio = window.innerWidth / this.width;
+          this.height = this.height * this.ratio;
+          this.width = this.width * this.ratio;
+        }
+
+        centerImage(this);
+        myOverlay.appendChild(largeImage);
+
+      }); //image has loaded
+
+      largeImage.addEventListener('click', function() {
+        if (myOverlay) {
+          window.removeEventListener('resize', window, false);
+          window.removeEventListener('scroll', window, false);
+          myOverlay.parentNode.removeChild(myOverlay);
+        }
+      }, false)
+
+      window.addEventListener('scroll', function() {
+        if (myOverlay) {
+          myOverlay.style.top = window.pageYOffset + 'px';
+          myOverlay.style.left = window.pageXOffset + 'px';
+        }
+      }, false);
+
+      window.addEventListener('resize', function() {
+        if (myOverlay) {
+          myOverlay.style.width = window.innerWidth + 'px';
+          myOverlay.style.height = window.innerHeight + 'px';
+          myOverlay.style.top = window.pageYOffset + 'px';
+          myOverlay.style.left = window.pageXOffset + 'px';
+
+          centerImage(largeImage);
+        }
+      }, false)
 
 
-$(window).load(function() {
-	$(".loader_inner").fadeOut();
-	$(".loader").delay(400).fadeOut("slow");
-});
+    } // target is an image
+
+  }, false); //image is clicked
+
+  function centerImage(theImage) {
+    var myDifX = (window.innerWidth - theImage.width)/2;
+    var myDifY = (window.innerHeight - theImage.height)/2;
+
+    theImage.style.top = myDifY + 'px';
+    theImage.style.left = myDifX + 'px';
+
+    return theImage;
+  }
+
+}(); //self executing function
