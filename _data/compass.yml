@@ -5,6 +5,8 @@ require:
 - compass-reset
 require:
 - susy
+require:
+- breakpoint
 project_path: /home/konstantin/Documents/design
 http_path: /
 css_dir: assets/css
