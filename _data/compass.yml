@@ -1,0 +1,13 @@
+---
+require:
+- jekyll-compass
+require:
+- compass-reset
+require:
+- susy
+project_path: /home/konstantin/Documents/design
+http_path: /
+css_dir: assets/css
+sass_dir: assets/_sass
+images_dir: images
+javascripts_dir: javascripts

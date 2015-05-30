@@ -1,2 +1,14 @@
 Ctrl-Shift-A  Wrap with abbreviation
 ul>li*>a[href=http://$#.com]
+------
+color: lighten($darkblue, 20)
+------
+compass create .
+-------
+{headings()}
+	font-family: Merriweather-Regular
+	font-weight: normal
+	color: $darkgray
+------
+@include text-shadow($paleyellow 1px 1px)
+-----

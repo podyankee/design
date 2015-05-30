@@ -1,0 +1,7 @@
+
+@include font-face("BreeSerif-Regular", "../fonts/Bree_Serif/BreeSerif-Regular", normal, $file-formats: ttf);
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather-Regular", normal, $file-formats: ttf);
+@include font-face("CleanvertisingLight", "../fonts/CleanvertisingLight/CleanvertisingLight", 300, $file-formats: eot woff ttf);
+@include font-face("RalewayBold", "../fonts/RalewayBold/RalewayBold", 300, $file-formats: eot woff ttf);
+@include font-face("RalewayRegular", "../fonts/RalewayRegular/RalewayRegular", 300, $file-formats: eot woff ttf);
+@include font-face("RalewayLight", "../fonts/RalewayLight/RalewayLight", 300, $file-formats: eot woff ttf);
