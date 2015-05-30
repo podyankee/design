@@ -41,3 +41,27 @@
 			} //breakpoint
 	} //.secondary
 }
+
+.hero {
+	width: 100%;
+	@include breakpoint($medium){
+		@include single-transition(all, 1s, ease-out);
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 450px;
+		background: url('../img/misc/helper.jpg') no-repeat ;
+		
+		background-position: center center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				margin: 0 auto;
+				.branding {
+					position: absolute;
+					bottom: 0;
+				}
+	}
+	
+}

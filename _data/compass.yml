@@ -11,5 +11,6 @@ project_path: /home/konstantin/Documents/design
 http_path: /
 css_dir: assets/css
 sass_dir: assets/_sass
-images_dir: images
+images_dir: assets/img
 javascripts_dir: javascripts
+
