@@ -75,4 +75,44 @@
 	}
 }
 
+.speakerslist {
+	@include breakpoint($medium){
+			text-align: center;
+			@include background(linear-gradient(top, lighten($darkblue, 3), $darkblue));
+			color: rgba($paleyellow ,.5);
+			overflow: hidden;
+			padding-bottom: 10px;
+			#{headings()} {
+				text-shadow: none;
+				border-bottom: none !important;
+			}
+		h1 {
+			color: $green;
+			font-size: 2.6rem;
+			line-height: 1em;
+			@include breakpoint($large){
+				font-size: 4rem;
+				line-height: 1em;
+			}
+		}
+		h3 {
+			color: lighten($yellow, 10);
+			line-height: .9rem;
+		}
+		
+		.small {
+			padding-top: 4em !important;
+			line-height: 1em;
+			color: lighten($darkblue, 30);
+			a {
+				color: lighten($darkblue, 30);
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+		}
+}
+
 

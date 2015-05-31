@@ -17,3 +17,6 @@ compass create .
 @include breakpoint($small){
 			@include horizontal-list;
 		}
+-----
+@include background(linear-gradient(top, lighten($darkblue, 3), $darkblue));
+		
