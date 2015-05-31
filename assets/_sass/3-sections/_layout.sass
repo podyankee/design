@@ -28,10 +28,16 @@ header
 				padding-right: .5em
 			
 			a
+				@include single-transition(all, .5s, ease-out)
 				display: block
 				text-decoration: none
 				padding: 5px 10px
 				color: $paleryellow
+				&:hover
+					background: $orange
+					a
+						color: lighten(yellow, 30)
+		
 	
 	
 footer

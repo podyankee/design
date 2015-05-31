@@ -2,7 +2,7 @@
 
 .layout {
 	@include container;
-	padding: 3%;
+	padding: 0 3%;
 
 	.primary  {
 		margin-top: .2em;
@@ -65,3 +65,14 @@
 	}
 	
 }
+
+
+.navigation {
+	ul.nav {
+		@include breakpoint($small){
+			@include horizontal-list;
+		}
+	}
+}
+
+

@@ -13,3 +13,7 @@ compass create .
 @include text-shadow($paleyellow 1px 1px)
 -----
 @include border-radius
+-----
+@include breakpoint($small){
+			@include horizontal-list;
+		}
